@@ -1,3 +1,4 @@
+//DDF 2018
 // pose to the camera and press R to export DXF
 
 import processing.dxf.*;
@@ -20,7 +21,7 @@ void setup() {
   rectMode(CENTER);
 
   // Uses the default video input, see the reference if this causes an error
-  video = new Capture(this, width, height, 15);
+  video = new Capture(this, width, height);
   video.start();
 }
 
@@ -37,10 +38,9 @@ void draw() {
       beginRaw(DXF, "output.dxf"); // Start recording to the file
       noStroke();                    // we dont want the outline, just the faces of the boxes
     }
-    // Begin loop for columns
-    for (int i = 0; i < cols;i++) {
-      // Begin loop for rows
-      for (int j = 0; j < rows;j++) {
+   
+    for (int i = 0; i < cols;i++) {          // Begin loop for columns     
+      for (int j = 0; j < rows;j++) {        // Begin loop for rows
 
         // Where are we, pixel-wise?
         int x = i * cellSize;
@@ -49,7 +49,7 @@ void draw() {
 
         // Each oval is sized  determined by brightness
         color c = video.pixels[loc];
-        float sz = ((brightness(c)) / 255.0) * cellSize*1.0; // need to be inverted , the ovals are black
+        float sz = ((brightness(c)) / 255.0) * cellSize*1.0; 
        
         pushMatrix();
         translate(x + cellSize/2, y + cellSize/2,sz/2);   // translate put the current x and y at the 0,0

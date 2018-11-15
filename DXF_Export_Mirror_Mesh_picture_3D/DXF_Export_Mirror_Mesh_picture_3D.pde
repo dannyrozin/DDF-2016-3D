@@ -1,4 +1,5 @@
-// pose to the camera and press R to export DXF
+//DDF 2018
+//  press R to export DXF. replace the image in the data folder
 
 import processing.dxf.*;
 import processing.video.*;
@@ -24,14 +25,16 @@ void setup() {
 
   picture = loadImage("yulie3.png");
   picture.resize(width, height);
+   //picture.filter(BLUR,10);
 }
 
 
 void draw() { 
-  rotateY(0.5);               // rotating a bit so that we can appreciate the 3D
- 
+ // rotateY(0.5);               // rotating a bit so that we can appreciate the 3D
+  rotateY(mouseX/100.0);    
  
     picture.loadPixels();
+   // picture.filter(BLUR,3);
     background(0);
     fill(0,255,0);
     stroke (0);
@@ -87,4 +90,3 @@ void keyPressed() {
     record = true;
   }
 }
-

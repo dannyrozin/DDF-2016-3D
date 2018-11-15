@@ -1,10 +1,8 @@
-/**  Make sure the audio input is set to the internal mic then sing into it to get nice waves
-    and press R to record DXF
+// DDF 2018
+//  Make sure the audio input is set to the internal mic then sing into it to get nice waves
+//    and press R to record DXF
 
-
-
-
- * Get Line In
+/* Get Line In
  * by Damien Di Fede.
  *  
  * This sketch demonstrates how to use the <code>getLineIn</code> method of 
@@ -49,42 +47,40 @@ void setup()
 
   minim = new Minim(this);
   minim.debugOn();
-  
+
   // get a line in from Minim, default bit depth is 16
   in = minim.getLineIn(Minim.STEREO, 512);
 }
 
 void draw()
 {
-  rotateY(0.3);
+  if (record == ! true)rotateY(0.3);
   background(0);
- noStroke();
- fill(0,0,255);
-  
+  noStroke();
+  fill(0, 0, 255);
+
   if (record == true) {
     beginRaw(DXF, "output.dxf"); // Start recording to the file
   }
-  
+
   // draw the waveforms
   int skip = 2;
-  for(int i = 0; i < in.bufferSize() - skip; i+=skip) {
-   float thisReading = 20+in.left.get(i)*50;
-     float nextReading = 20+in.left.get(i+skip)*50;
-     
+  for (int i = 0; i < in.bufferSize() - skip; i+=skip) {
+    float thisReading = 20+in.left.get(i)*50;
+    float nextReading = 20+in.left.get(i+skip)*50;
+
     beginShape();
-    vertex(i, 50 + thisReading,0);
-    vertex(i, 50 - thisReading,50);
-       vertex(i+skip, 50 - nextReading,50);
-       vertex(i+skip, 50 + nextReading,0);
-       
-   endShape(CLOSE);
+    vertex(i, 50 + thisReading, 0);
+    vertex(i, 50 - thisReading, 50);
+    vertex(i+skip, 50 - nextReading, 50);
+    vertex(i+skip, 50 + nextReading, 0);
+    endShape(CLOSE);
   }
-  
-   if (record == true) {
+
+  if (record == true) {
     endRaw();
     record = false; // Stop recording to the file
-  } 
-  
+  }
 }
 
 void keyPressed() {
@@ -99,6 +95,6 @@ void stop()
   // always close Minim audio classes when you are done with them
   in.close();
   minim.stop();
-  
+
   super.stop();
 }

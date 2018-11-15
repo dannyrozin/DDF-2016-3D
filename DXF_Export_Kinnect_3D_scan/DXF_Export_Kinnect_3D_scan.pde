@@ -1,3 +1,4 @@
+//DDF 2018
 // press r to export dxf "scan"
 
 // Daniel Shiffman
@@ -72,9 +73,8 @@ void draw() {
       // Scale up by 200
       float factor = 200;
       translate(v.x*factor, v.y*factor, factor-v.z*factor);
-      // Draw a point
-      //point(0,0);
       rect(0, 0, skip, skip);
+      // box(skip);
       popMatrix();
     }
   }

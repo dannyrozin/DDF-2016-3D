@@ -1,3 +1,5 @@
+
+//DDF 2018
 //tracks the closest point and exports a 3D polygon of the path
 // press s to start sampling , and again to stop
 // press d to erase the sampling
@@ -38,7 +40,7 @@ public void setup() {
 }
 
 public void draw() {
-  //rotateY(radians(30));     // rotating so that we can see the 3D
+  //rotateY(radians(mouseX));     // rotating so that we can see the 3D
   background(0);
   image(kinect.getDepthImage(),0,0);    // show the depth image
   fill(255);
@@ -109,7 +111,7 @@ public void draw() {
   }
   beginShape();                     // draw the polygon
   for (int i = 0;i< samples;i++) {
-    vertex(Xs[i],Ys[i],Zs[i]);
+    vertex(Xs[i],Ys[i],Zs[i]*5-200);
   }
   endShape();
 

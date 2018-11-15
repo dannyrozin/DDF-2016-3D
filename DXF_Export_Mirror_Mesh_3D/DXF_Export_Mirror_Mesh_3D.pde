@@ -1,3 +1,5 @@
+
+// DDF 2018
 // pose to the camera and press R to export DXF
 
 import processing.dxf.*;
@@ -31,6 +33,7 @@ void draw() {
   if (video.available()) {
     video.read();
     video.loadPixels();
+   // video.filter(BLUR,10);
     background(0);
     fill(0,255,0);
     stroke (0);
